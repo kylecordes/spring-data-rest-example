@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class AbstractEntity implements Identifiable<Long> {
+public abstract class AbstractEntity implements Identifiable<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

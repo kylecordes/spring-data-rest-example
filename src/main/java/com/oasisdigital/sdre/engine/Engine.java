@@ -45,5 +45,4 @@ public class Engine {
 	public Set<Part> getOrders() {
 		return ordersInProgress;
 	}
-
 }

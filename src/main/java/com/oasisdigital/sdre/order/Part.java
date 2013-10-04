@@ -18,7 +18,6 @@ package com.oasisdigital.sdre.order;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -26,19 +25,41 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.oasisdigital.sdre.core.AbstractEntity;
 
 @Entity
-@Getter
 @Setter
 @ToString
 @Table(name = "ODPart")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Part extends AbstractEntity {
 
+	public String getPartNumber() {
+		return partNumber;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
+	}
+
+	@JsonSerialize(using=JsonDateTimeSerializer.class) 
+	public DateTime getOrderedDate() {
+		return orderedDate;
+	}
+
 	private String partNumber;
 	private String description;
 	private int price;
+	private int qtyOnHand;
 	
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime orderedDate;
@@ -60,5 +81,7 @@ public class Part extends AbstractEntity {
 		this.price = price;
 		this.orderedDate = new DateTime();
 	}
+	
+	
 
 }
